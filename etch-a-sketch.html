@@ -27,6 +27,10 @@
     pixel.addEventListener('click', newGrid);
     const color = document.querySelector('#color');
 
+    gridbox.addEventListener('mouseover', function(e) {
+        e.target.style.backGroundColor = 'black';
+    })
+
     function drawGrid(columns, rows) {
         document.documentElement.style.setProperty("--rowNum", columns);
         document.documentElement.style.setProperty("--colNum", rows);
@@ -34,12 +38,14 @@
             for (j=0; j < columns; j++) {
                 const cell = document.createElement('div');
                 cell.classList.add('cell');
+                cell.addEventListener('mouseover', changeColor)
                 gridbox.appendChild(cell);
             }
         }
     }
 
     function newGrid() {
+        gridbox.innerHTML = '';
         gridSize = window.prompt('Choose a size from 1-100');
         if (gridSize <= 100) {
             drawGrid(gridSize, gridSize);
@@ -47,6 +53,10 @@
             alert('Pixel size over limit');
             return;
         }
+    }
+
+    function changeColor(e) {
+        e.target.style.backgroundColor = 'black';
     }
 
     drawGrid(gridSize, gridSize);
