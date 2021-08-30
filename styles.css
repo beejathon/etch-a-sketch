@@ -1,0 +1,35 @@
+:root {
+    --rowNum: 16;
+    --colNum: 16;
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.gridbox {
+    display: grid;
+    align-self: center;
+    height: 500px;
+    width: 500px;
+    border: 1px solid rgb(190, 8, 8);
+    grid-template-rows: repeat(var(--rowNum), 1fr);
+    grid-template-columns: repeat(var(--colNum), 1fr);
+}
+
+.cell {
+    padding: 1px;
+    text-align: center;
+}
+
+.cell:hover {
+    padding: 1px;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+#button {
+    flex-basis: auto;
+}

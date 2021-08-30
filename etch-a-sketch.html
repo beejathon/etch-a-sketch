@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="styles.css">
+    <title>Etch-a-Sketch</title>
+</head>
+
+    <div class='container'>
+        <div class='btn-container'>
+            <button id='pixel'>Pixel Size</button>
+            <button id='color'>Color Mode</button>
+        </div>
+        <div class='gridbox'></div>
+    </div>
+    
+<script>    
+    const gridbox = document.querySelector('.gridbox');
+    let htmlStyles = window.getComputedStyle(document.querySelector("html"));
+    let rowNum = parseInt(htmlStyles.getPropertyValue("--rowNum"));
+    let colNum = parseInt(htmlStyles.getPropertyValue("--colNum"));
+    let gridSize = 16;
+    
+    const pixel = document.querySelector('#pixel');
+    pixel.addEventListener('click', newGrid);
+    const color = document.querySelector('#color');
+
+    function drawGrid(columns, rows) {
+        document.documentElement.style.setProperty("--rowNum", columns);
+        document.documentElement.style.setProperty("--colNum", rows);
+        for (i=0; i < rows; i++) {
+            for (j=0; j < columns; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                gridbox.appendChild(cell);
+            }
+        }
+    }
+
+    function newGrid() {
+        gridSize = window.prompt('Choose a size from 1-100');
+        if (gridSize <= 100) {
+            drawGrid(gridSize, gridSize);
+        } else {
+            alert('Pixel size over limit');
+            return;
+        }
+    }
+
+    drawGrid(gridSize, gridSize);
+
+</script>
+
+</body>
+</html>
